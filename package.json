@@ -1,0 +1,22 @@
+{
+  "name": "text_scramble",
+  "version": "1.0.0",
+  "description": "A static js page to practice sorting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travisreynolds17/text_scramble.git"
+  },
+  "author": "Travis Reynolds",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/travisreynolds17/text_scramble/issues"
+  },
+  "homepage": "https://github.com/travisreynolds17/text_scramble#readme",
+  "dependencies": {
+    "node-sass": "^4.9.3"
+  }
+}
