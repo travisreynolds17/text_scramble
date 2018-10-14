@@ -1,7 +1,29 @@
+@import "config";
+
+// reset
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAYUlEQVQoU2Nk4rL4z8DAwPDv2wlGEI0LMBKtEJsJc2zngG1JOZwCtwWrdUQrxGYLY8V5u/9d1r+I80zZUTaGDsND+H2NzRo77zn/j+yfg2ILVlNAQWbjmMJwaCsBX2OzBQApKSYLnubEZQAAAABJRU5ErkJggg==) repeat;
-} 
+  // patternify background
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAYUlEQVQoU2Nk4rL4z8DAwPDv2wlGEI0LMBKtEJsJc2zngG1JOZwCtwWrdUQrxGYLY8V5u/9d1r+I80zZUTaGDsND+H2NzRo77zn/j+yfg2ILVlNAQWbjmMJwaCsBX2OzBQApKSYLnubEZQAAAABJRU5ErkJggg==)
+    repeat;
+  color: $black;
+}
+
+.btn {
+  background: $btn-default;
+  border: 4px $border-default;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 10px;
+  @include easeOut;
+
+  // decorated class to indicate which task is selected
+  &.show {
+    background: $btn-active;
+    border: 6px $border-active;
+  }
+}

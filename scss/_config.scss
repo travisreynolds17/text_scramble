@@ -1,0 +1,14 @@
+// colors
+
+$btn-default: rgb(255, 187, 187);
+$btn-active: rgb(187, 187, 255);
+
+$border-default: rgb(255, 100, 100);
+$border-active: rgb(100, 100, 255);
+
+$black: #222222;
+$white: #fefefe;
+
+@mixin easeOut {
+  transition: ease-out all 1s;
+}
