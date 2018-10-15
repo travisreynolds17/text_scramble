@@ -4,6 +4,10 @@
 
 //DOM selectors
 
+// textarea selectors
+const userInput = document.querySelector("#user-text");
+const output = document.querySelector(".output-text");
+
 // button textarea description
 const btnHint = document.querySelector(".button-hint");
 
@@ -13,6 +17,7 @@ const btnAlpha = document.querySelector("#btn-alpha");
 const btnAlphaRev = document.querySelector("#btn-reverse-alpha");
 const btnSub = document.querySelector("#btn-substitution");
 const btnReverse = document.querySelector("#btn-reverse");
+const btnGo = document.querySelector(".btn-go");
 
 //descriptions for selected task
 const descScramble = "This is for scramble.";
@@ -24,10 +29,13 @@ const descReverse = "This is for reverse.";
 // collective button array
 let buttons = [btnScramble, btnAlpha, btnAlphaRev, btnSub, btnReverse];
 
+const allowedInput = /^[0-9a-zA-Z\w\.\!\?\s]+$/; // this is a regular expression. It means only letters and numbers, space, and some punctuation.
+
 let currentState = null;
 
 //ass event listeners
 buttons.forEach(item => item.addEventListener("click", toggle));
+btnGo.addEventListener("click", getInput);
 
 // gets id of clicked button
 function toggle() {
@@ -73,3 +81,72 @@ function setDescription(state) {
 function render(node, template) {
   node.innerHTML = template;
 }
+
+function getInput() {
+  let input = userInput.value;
+  // check user input against allowed characters
+  if (input.match(allowedInput)) {
+    output.value = parseInput(input);
+  } else {
+    alert(
+      "Input may only contain letters, numbers, spaces and the following punctuation: ! ? . Please update input."
+    );
+  }
+}
+
+// split input into individual words and push to new array, then pass to appropriate task function.
+function parseInput(text) {
+  let inputArray = text.split(" ");
+
+  switch (currentState) {
+    case "btn-scramble":
+      scramble(inputArray);
+      break;
+
+    case "btn-alpha":
+      alphabetize(inputArray);
+      break;
+
+    case "btn-reverse-alpha":
+      reverseAlphabetize(inputArray);
+      break;
+
+    case "btn-substitution":
+      substitution(inputArray);
+      break;
+
+    case "btn-reverse":
+      inputReverse(inputArray);
+      break;
+
+    default:
+      break;
+  }
+  let result = formatOutput(inputArray);
+  return result;
+}
+
+function formatOutput(output) {
+  let result = "";
+
+  for (i = 0; i < output.length; i++) {
+    result = result + output[i] + " ";
+  }
+  return result;
+}
+
+function scramble(array) {
+  let scrambled = array;
+}
+
+function alphabetize(array) {
+  array.sort();
+  return array;
+}
+
+function reverseAlphabetize(array) {
+  array.sort().reverse();
+  return array;
+}
+
+// to-do : Scramble/Reverse/Substitution functions, then web layout
