@@ -21,10 +21,10 @@ const btnGo = document.querySelector(".btn-go");
 
 //descriptions for selected task
 const descDefault = "Click on one of the available tasks to get started!";
-const descScramble = "This is for scramble.";
-const descAlpha = "This is for alphabetize.";
-const descAlphaRev = "This is for reverse alphabetize.";
-const descReverse = "This is for reverse.";
+const descScramble = "Randomly shuffle the words in your message.";
+const descAlpha = "Sort in alphabetical order.";
+const descAlphaRev = "Sort in reverse alphabetical order.";
+const descReverse = "Reverse your message's word order.";
 const explanation =
   "Use this simple message manipulator to play with text! Simply type a message in the field, click on a task and hit go! Messages may be alphanumeric, contain spaces, and the punctuation marks . ! and ?";
 
@@ -157,11 +157,13 @@ function scramble(array) {
 }
 
 function alphabetize(array) {
+  array.forEach(item => item.toLowerCase());
   array.sort();
   return array;
 }
 
 function reverseAlphabetize(array) {
+  array.forEach(item => item.toLowerCase());
   array.sort().reverse();
   return array;
 }
