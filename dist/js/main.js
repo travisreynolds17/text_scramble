@@ -10,32 +10,42 @@ const output = document.querySelector(".output-text");
 
 // button textarea description
 const btnHint = document.querySelector(".button-hint");
+const explanationNode = document.querySelector(".explanation-node");
 
 //toggle buttons
 const btnScramble = document.querySelector("#btn-scramble");
 const btnAlpha = document.querySelector("#btn-alpha");
 const btnAlphaRev = document.querySelector("#btn-reverse-alpha");
-const btnSub = document.querySelector("#btn-substitution");
 const btnReverse = document.querySelector("#btn-reverse");
 const btnGo = document.querySelector(".btn-go");
 
 //descriptions for selected task
+const descDefault = "Click on one of the available tasks to get started!";
 const descScramble = "This is for scramble.";
 const descAlpha = "This is for alphabetize.";
 const descAlphaRev = "This is for reverse alphabetize.";
-const descSub = "This is for substitution.";
 const descReverse = "This is for reverse.";
+const explanation =
+  "Use this simple message manipulator to play with text! Simply type a message in the field, click on a task and hit go! Messages may be alphanumeric, contain spaces, and the punctuation marks . ! and ?";
 
 // collective button array
-let buttons = [btnScramble, btnAlpha, btnAlphaRev, btnSub, btnReverse];
+let buttons = [btnScramble, btnAlpha, btnAlphaRev, btnReverse];
 
 const allowedInput = /^[0-9a-zA-Z\w\.\!\?\s]+$/; // this is a regular expression. It means only letters and numbers, space, and some punctuation.
 
+// tells us which task is currently assigned
 let currentState = null;
 
-//ass event listeners
-buttons.forEach(item => item.addEventListener("click", toggle));
-btnGo.addEventListener("click", getInput);
+/*========================================================================================
+========================================================================================*/
+
+function init() {
+  //add event listeners
+  buttons.forEach(item => item.addEventListener("click", toggle));
+  btnGo.addEventListener("click", getInput);
+  render(btnHint, descDefault);
+  render(explanationNode, explanation);
+}
 
 // gets id of clicked button
 function toggle() {
@@ -65,10 +75,6 @@ function setDescription(state) {
       render(btnHint, descAlphaRev);
       break;
 
-    case "btn-substitution":
-      render(btnHint, descSub);
-      break;
-
     case "btn-reverse":
       render(btnHint, descReverse);
       break;
@@ -83,14 +89,18 @@ function render(node, template) {
 }
 
 function getInput() {
-  let input = userInput.value;
-  // check user input against allowed characters
-  if (input.match(allowedInput)) {
-    output.value = parseInput(input);
+  if (userInput.value) {
+    let input = userInput.value;
+    // check user input against allowed characters
+    if (input.match(allowedInput)) {
+      output.value = parseInput(input);
+    } else {
+      alert(
+        "Input may only contain letters, numbers, spaces and the following punctuation: ! ? . Please update input."
+      );
+    }
   } else {
-    alert(
-      "Input may only contain letters, numbers, spaces and the following punctuation: ! ? . Please update input."
-    );
+    alert("You must give us something to work with!");
   }
 }
 
@@ -111,12 +121,8 @@ function parseInput(text) {
       reverseAlphabetize(inputArray);
       break;
 
-    case "btn-substitution":
-      substitution(inputArray);
-      break;
-
     case "btn-reverse":
-      inputReverse(inputArray);
+      inputArray.reverse();
       break;
 
     default:
@@ -135,8 +141,19 @@ function formatOutput(output) {
   return result;
 }
 
+// This is called a Fisher-Yates shuffle. I'm not sure I totally understand it, but I want to study how it works.
 function scramble(array) {
-  let scrambled = array;
+  var i = 0,
+    j = 0,
+    temp = null;
+
+  for (i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
 }
 
 function alphabetize(array) {
@@ -149,4 +166,13 @@ function reverseAlphabetize(array) {
   return array;
 }
 
-// to-do : Scramble/Reverse/Substitution functions, then web layout
+// gets a pseudo-random number between 0 and supplied maximum.
+function getRandom(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+// =================================================================================================================
+
+init();
+
+// Todo: Update formatOutput() such that result is properly capitalized. Want it to mimic basic sentence structure.

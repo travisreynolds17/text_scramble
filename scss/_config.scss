@@ -9,6 +9,8 @@ $border-active: rgb(100, 100, 255);
 $black: #222222;
 $white: #fefefe;
 
+$background-color: #fbceff;
+
 @mixin easeOut {
   transition: ease-out all 1s;
 }

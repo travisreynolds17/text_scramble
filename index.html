@@ -11,35 +11,42 @@
 </head>
 
 <body>
+    <header>
+        <h1>
+            Simple Text Manipulator
+        </h1>
+    </header>
     <main>
-        <div class="user-text">
-            <textarea name="userText" id="user-text" cols="30" rows="10"></textarea>
-        </div>
-        <div class="button-hint">
+        <div class="container">
+            <div class="explanation-node">
 
-        </div>
-        <div class="toggle-buttons">
-            <button class="btn" id="btn-scramble">
-                Scramble
-            </button>
-            <button class="btn" id="btn-alpha">
-                Alphabetize
-            </button>
-            <button class="btn" id="btn-reverse-alpha">
-                Reverse alphabetize
-            </button>
-            <button class="btn" id="btn-substitution">
-                Substitution
-            </button>
-            <button class="btn" id="btn-reverse">
-                Reverse
-            </button>
-        </div>
+            </div>
+            <div class="user-text">
+                <textarea name="userText" id="user-text" cols="30" rows="10"></textarea>
+            </div>
+            <div class="button-hint">
 
-        <textarea class="output-text" readonly="true" cols="30" rows="10">
+            </div>
+            <div class="toggle-buttons">
+                <button class="btn" id="btn-scramble">
+                    Scramble
+                </button>
+                <button class="btn" id="btn-alpha">
+                    Alphabetize
+                </button>
+                <button class="btn" id="btn-reverse-alpha">
+                    Reverse alphabetize
+                </button>
+                <button class="btn" id="btn-reverse">
+                    Reverse
+                </button>
+            </div>
+
+            <textarea class="output-text" readonly="true" cols="30" rows="10">
 
         </textarea>
-        <button class="btn-go">Go</button>
+            <button class="btn-go">Go</button>
+        </div>
     </main>
 
     <script src="dist/js/main.js"></script>

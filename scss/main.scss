@@ -9,9 +9,15 @@
 
 body {
   // patternify background
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAYUlEQVQoU2Nk4rL4z8DAwPDv2wlGEI0LMBKtEJsJc2zngG1JOZwCtwWrdUQrxGYLY8V5u/9d1r+I80zZUTaGDsND+H2NzRo77zn/j+yfg2ILVlNAQWbjmMJwaCsBX2OzBQApKSYLnubEZQAAAABJRU5ErkJggg==)
-    repeat;
+  background: $black;
   color: $black;
+}
+
+h1 {
+  font-size: 48px;
+  color: $white;
+  text-align: center;
+  margin: 25px 0;
 }
 
 .btn {
@@ -26,4 +32,25 @@ body {
     background: $btn-active;
     border: 6px $border-active;
   }
+}
+
+.btn-go {
+  font-size: 40px;
+  padding: 10px;
+}
+
+.container {
+  background: $background-color;
+  margin: 0 auto;
+  width: 72%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.container > div {
+  margin: 0 auto 15px auto;
+}
+
+.btn-hint {
+  width: 60%;
 }
